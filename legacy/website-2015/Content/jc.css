@@ -1,0 +1,85 @@
+﻿html, body {
+    height:100%;
+     background: url("../Images/wood_bg.jpg") repeat;
+}
+
+header {
+
+}
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+
+        border-top:dashed;   
+        height: 40px;
+        padding:5px 0px;
+        clear:both;
+        font-size:larger;
+        color:#fff;
+        text-align: center;
+}
+
+
+#servicios, #projects, #misc {
+    display: none;
+}
+
+.center {
+    text-align:center;
+}
+
+.hide {
+    display:none;
+}
+
+.jumbotron h2 {
+    text-align:center;
+}
+
+.navbar-custom {
+    background-color: #2e2e2e;
+	font-weight:700;
+    text-transform:uppercase;
+    border-width:0;
+}
+
+.navbar-custom  .navbar-nav>li>a {
+	color: #ddd;
+}
+.navbar-custom  .dropdown-menu li>a:hover {
+	color: #eee;
+}
+.navbar-custom  .navbar-nav li>a:hover, .navbar-nav li .open, .navbar-custom .navbar-nav .active a  {
+	background-color: #000;
+}
+.navbar-custom .navbar-nav>.dropdown>a .caret {
+	border-top-color: #999;
+	border-bottom-color: #999;
+}
+
+.panel {
+   
+  background-color:#fff;
+  border: 2px solid;
+  border-radius: 25px;
+  margin: 10px;
+  padding: 20px;
+  text-align:justify;
+    
+}
+
+.white {
+    color: #fff;
+}
+
+
+
+
+
+
+
