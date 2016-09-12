@@ -1,0 +1,54 @@
+
+<div class="container">      
+
+    <div class="row">
+        <div class="col-xs-12">
+             <h3> {{ getTexto('about-me') }} </h3>
+             <hr>
+        </div>
+    </div>
+    
+    <div class="row row-content">    
+        <div class="col-xs-12 col-sm-9">
+            <div class="media">
+                <div class="media-left media-top"> 
+                    <img class="media-object img-thumbnail" src="/images/jc-logo.png" alt="Sobre mí">
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading">
+                        {{ getTexto('about') }}                        
+                    </h2>
+                    <p class="justify"> {{ getTexto('about-text') }} </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+            <a href="#footer" class="btn btn-warning btn-block"> <i class="fa fa-envelope-o"></i> {{ getTexto('contactme') }} </a>
+        </div>
+    </div>
+
+    <div class="row row-content">
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> {{ getTexto('must-know') }} </h3>
+                </div>
+                <div class="panel-body justify" [innerHtml] = "getTexto('must-know-text')">
+                       
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> {{ getTexto('hire-me') }} </h3>
+                </div>
+                <div class="panel-body justify" [innerHtml] = "getTexto('hire-me-text')">
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

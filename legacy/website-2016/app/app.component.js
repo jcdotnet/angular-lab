@@ -1,0 +1,51 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+// router
+var router_1 = require("@angular/router");
+// services
+var platform_browser_1 = require('@angular/platform-browser');
+var multilanguage_service_1 = require('./services/multilanguage.service');
+var AppComponent = (function () {
+    function AppComponent(router, titleService, multilanguageService) {
+        this.router = router;
+        this.titleService = titleService;
+        this.multilanguageService = multilanguageService;
+        this.date = new Date();
+        this.titleService.setTitle(this.getTexto('appTitle'));
+    }
+    AppComponent.prototype.changeLanguage = function (newLanguage) {
+        this.multilanguageService.setLanguage(newLanguage);
+        if (this.router.url === '/' || this.router.url === '/')
+            this.titleService.setTitle(this.getTexto('appTitle'));
+        else if (this.router.url === '/services')
+            this.titleService.setTitle(this.getTexto('servTitle'));
+        else if (this.router.url === '/projects')
+            this.titleService.setTitle(this.getTexto('projsTitle'));
+    };
+    AppComponent.prototype.getTexto = function (texto) {
+        return this.multilanguageService.getTexto(texto);
+    };
+    AppComponent.prototype.setTitle = function (newTitle) {
+        this.titleService.setTitle(newTitle);
+    };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            templateUrl: '/views/app.html',
+            providers: [platform_browser_1.Title, multilanguage_service_1.MultiLanguageService]
+        }), 
+        __metadata('design:paramtypes', [router_1.Router, platform_browser_1.Title, multilanguage_service_1.MultiLanguageService])
+    ], AppComponent);
+    return AppComponent;
+}());
+exports.AppComponent = AppComponent;
+//# sourceMappingURL=app.component.js.map

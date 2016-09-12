@@ -1,0 +1,83 @@
+<div class="container">    
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="breadcrumb">
+                <li><a [routerLink]="['/']">Home</a></li>
+                <li class="active">{{getTexto('servicios')}}</li>
+           </ul>
+        </div>
+        <div class="col-xs-12">
+            <h3> {{getTexto('servicios')}} </h3>
+            <hr>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="panel-group" id="collapse">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#collapse" href="#collapse-one">
+                            {{getTexto('desktop')}}
+                        </a>                      
+                    </h4>
+                </div>
+                <div id="collapse-one" class="panel-collapse collapse">
+                    <div class="panel-body" [innerHtml] = "getTexto('desktop-text')"></div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">                        
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#collapse" href="#collapse-two">
+                            {{getTexto('web')}}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse-two" class="panel-collapse collapse in">
+                    <div class="panel-body" [innerHtml] = "getTexto('web-text')">
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#collapse" href="#collapse-three">
+                            {{getTexto('programming')}}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse-three" class="panel-collapse collapse">
+                    <div class="panel-body" [innerHtml] = "getTexto('programming-text')">
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#collapse" href="#collapse-four">
+                            {{getTexto('other-services')}}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse-four" class="panel-collapse collapse">
+                    <div class="panel-body" [innerHtml] = "getTexto('other-services-text')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    
+
+    <div class="row">
+        <div class="well">
+            <blockquote>
+                <p> Jc es un brillante programador. Es responsable, apasionado de su trabajo, y tiene muy buen criterio a la hora de afrontar el diseño de cualquier proyecto, además de una gran capacidad para aprender nuevas tecnologías en poco tiempo.</p>
+                <footer>Antonio Márquez Marín,
+                    <cite>Software engineer</cite>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    
+</div>
