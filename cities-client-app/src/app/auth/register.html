@@ -1,0 +1,98 @@
+<div class="w-75 margin-auto">
+	<div class="form-container">
+
+		<h2>Register</h2>
+
+		<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+			<div class="form-field flex">
+				<div class="w-25">
+					<label for="personName" class="form-label pt">Name</label>
+				</div>
+
+				<div class="flex-1">
+					<input type="text" id="name" class="form-input" formControlName="name" />
+					@if ( nameIsEmpty )
+					{
+					<span class="text-red">Name is required</span>
+					}
+				</div>
+			</div>
+
+			<div class="form-field flex">
+				<div class="w-25">
+					<label for="email" class="form-label pt">Email</label>
+				</div>
+
+				<div class="flex-1">
+					<input type="text" id="email" class="form-input" formControlName="email" />
+					@if ( emailIsEmpty )
+					{
+					<span class="text-red">Email is required</span>
+					}
+					@if ( emailIsInvalid )
+					{
+					<span class="text-red">Email format nos valid</span>
+					}
+				</div>
+			</div>
+
+			<div class="form-field flex">
+				<div class="w-25">
+					<label for="phoneNumber" class="form-label pt">Phone Number</label>
+				</div>
+
+				<div class="flex-1">
+					<input type="text" id="phoneNumber" class="form-input" formControlName="phoneNumber" />
+					@if ( phoneIsEmpty )
+					{
+					<span class="text-red">Phone number is required</span>
+					}
+				</div>
+			</div>
+
+			<div class="form-field flex">
+				<div class="w-25">
+					<label for="password" class="form-label pt">Password</label>
+				</div>
+        
+				<div class="flex-1">
+					<input type="password" id="password" class="form-input" formControlName="password" />
+					@if ( passwordIsEmpty )
+					{
+					<span class="text-red">Password is required</span>
+					}
+				</div>
+			</div>
+
+			<div class="form-field flex">
+				<div class="w-25">
+					<label for="confirmPassword" class="form-label pt">Confirm Password</label>
+				</div>
+
+				<div class="flex-1">
+					<input type="password" id="confirmPassword" class="form-input" formControlName="confirmPassword" />
+					@if (confirmPasswordIsEmpty)
+					{
+					<span class="text-red">Confirmation password is required</span>
+					}
+					@if ( passwordsDoNotMatch)
+					{
+					<span class="text-red">Password do not match</span>
+					}
+				</div>
+			</div>
+
+			<div class="form-field flex">
+				<div class="w-25">
+				</div>
+
+				<div class="flex-1">
+					<button type="submit" class="button button-green-back">Register</button>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<div class="page-content">
+  <div class="container">
+    <div class="margin-bottom">
+      <div class="flex">
+        <div class="flex-1">
+          <h2 class="app-title">
+            {{ title() }}
+          </h2>
+        </div>
+        <div class="flex-1 pr" id="search-box-div">
+          <div class="navbar account-links">
+            <ul>
+              @if (loggedOut) {
+              <li>
+                <a routerLink="/login">Login</a>
+              </li>
+              <li>
+                <a routerLink="/register">Register</a>
+              </li>
+              }
+              @else {
+                <li>
+                <a href="#" (click)="onLogout($event)">Logout</a>
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar mb">
+      <ul>
+        <li>
+          <a routerLink="/cities" routerLinkActive="nav-active">
+            Cities
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <main class="body main-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>
