@@ -1,0 +1,171 @@
+$campero-primary:   #7a306c; // Morado 
+$campero-secondary: #007d5e; // Verde 
+$campero-accent:    #fdf5e6; // Arena
+$campero-selected:  #f0f7fd; // Azul cielo
+
+:host {
+  display: block;      
+  min-height: 100vh; 
+  background-color:  #a5d8f3; // mcf
+  padding: 2rem 0;     
+}
+
+.campero-builder {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 3px solid $campero-primary; 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); 
+  font-family: 'Segoe UI', system-ui, sans-serif;
+
+  h1 {
+    color:  $campero-primary;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.control-group {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .control-label {
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .control-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    
+    &:focus {
+      outline: none;
+      border-color: $campero-primary;
+      box-shadow: 0 0 0 3px rgba($campero-primary, 0.1);
+    }
+  }
+
+  .control-error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+  }
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.control-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  &:has(input:checked) {
+    border-color: $campero-primary;
+    background-color: $campero-selected;
+  }
+
+  .control-text { font-weight: 600; }
+  .control-price { font-size: 0.85rem; color: #6b7280; }
+}
+
+.control-row-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.control-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .btn-add-extra {
+    background: #fff;
+    border: 1px solid $campero-secondary;
+    color: $campero-secondary;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    
+    &:hover {
+      background: $campero-secondary;
+      color: #fff;
+    }
+  }
+}
+
+.control-list {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: $campero-accent;
+  border-left: 5px solid $campero-secondary;
+
+  .control-extra {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    
+    button {
+      background: none;
+      border: none;
+      color: #dc2626;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
+
+.control-footer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #f3f4f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .campero-price {
+    font-size: 2rem;
+    color: $campero-primary;
+  }
+}
+
+.btn-submit {
+  background: $campero-secondary;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+  }
+}

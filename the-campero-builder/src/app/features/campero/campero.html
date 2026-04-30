@@ -1,1 +1,92 @@
-<p>campero works!</p>
+<div class="campero-builder">
+  <h1> The Campero Builder </h1>
+
+  <form [formGroup]="camperoForm" (ngSubmit)="onSubmit()">
+
+    <div class="control-group">
+      <label for="customerName" class="control-label">Nombre: </label>
+      <input id="customerName" class="control-input" type="text" formControlName="customerName" 
+        placeholder="Introduce tu nombre...">
+      
+        @if (customerIsInvalid) {
+      <small class="control-error">El nombre es obligatorio y debe contener más de 3 caracteres</small>
+      }
+    </div>
+
+    <div class="control-group" formGroupName="baseIngredients">
+      <label class="control-label">Ingredientes base:</label>
+      <div class="control-row-flex">
+        <label class="control-checkbox">
+          <input type="checkbox" formControlName="york"> Jamón York
+        </label>
+        <label class="control-checkbox">
+          <input type="checkbox" formControlName="lettuce"> Lechuga
+        </label>
+        <label class="control-checkbox">
+          <input type="checkbox" formControlName="tomato"> Tomate
+        </label>
+        <label class="control-checkbox">
+          <input type="checkbox" formControlName="mayo"> Mayonesa
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">Elige tu Campero:</label>
+      <div class="control-grid">
+        @for (p of ingredients; track p.id) {
+        <label class="control-option">
+          <input type="radio" [value]="p.id" formControlName="ingredient">
+          <span class="control-text">{{ p.name }}</span>
+          <span class="control-price">{{ p.price | currency:'EUR' }}</span>
+        </label>
+        }
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">Elige los Extras (Opcional):</label>
+
+      <div class="control-buttons">
+        @for (extra of extraIngredients; track extra.id) {
+        <button type="button" class="btn-add-extra" (click)="addExtra(extra.id)">
+          + {{ extra.name }} (+{{ extra.price | currency:'EUR' }})
+        </button>
+        }
+      </div>
+
+      @if (extras.length > 0) {
+      <div class="control-list">
+        <h4>Tus extras:</h4>
+        @for (control of extras.controls; track $index) {
+        <div class="control-extra">
+          {{ extraIngredients.find(e => e.id === control.value)?.name }}
+          <button type="button" (click)="removeExtra($index)">X</button>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">¿Cómo quieres el pan?</label>
+      <select formControlName="toastingLevel" class="control-input">
+        @for (level of toastingLevels; track level.id) {
+        <option [value]="level.id">{{ level.label }} ({{ level.description }})</option>
+        }
+      </select>
+    </div>
+
+    <div class="control-footer">
+      <div class="campero-price-wrapper">
+        <span>Precio Total:</span>
+        <strong class="campero-price">{{ totalPrice() | currency:'EUR' }}</strong>
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="camperoForm.invalid">
+        ¡Quiero mi campero!
+      </button>
+    </div>
+
+  </form>
+</div>
