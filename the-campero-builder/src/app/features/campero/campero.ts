@@ -3,13 +3,15 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { CurrencyPipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 
-import { INGREDIENTS, TOASTING_OPTIONS } from './data/ingredients';
+import { ToastingPickerComponent } from './components/toasting-picker/toasting-picker';
+import { INGREDIENTS } from './data/ingredients';
 
 @Component({
   selector: 'app-campero',
   imports: [
     ReactiveFormsModule,
-    CurrencyPipe
+    CurrencyPipe,
+    ToastingPickerComponent
   ],
   templateUrl: './campero.html',
   styleUrl: './campero.scss',
@@ -18,7 +20,6 @@ export default class CamperoComponent {
 
   readonly ingredients = INGREDIENTS.filter(i => !i.isDefault && i.price >= 2);
   readonly extraIngredients = INGREDIENTS.filter(i => !i.isDefault && i.price < 2);
-  readonly toastingLevels = TOASTING_OPTIONS;
 
   camperoForm = new FormGroup({
     customerName: new FormControl('', {

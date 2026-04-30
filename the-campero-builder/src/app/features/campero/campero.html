@@ -70,11 +70,7 @@
 
     <div class="control-group">
       <label class="control-label">¿Cómo quieres el pan?</label>
-      <select formControlName="toastingLevel" class="control-input">
-        @for (level of toastingLevels; track level.id) {
-        <option [value]="level.id">{{ level.label }} ({{ level.description }})</option>
-        }
-      </select>
+      <app-toasting-picker formControlName="toastingLevel"></app-toasting-picker>
     </div>
 
     <div class="control-footer">

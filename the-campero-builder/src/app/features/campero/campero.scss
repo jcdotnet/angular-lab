@@ -1,6 +1,5 @@
 $campero-primary:   #7a306c; // Morado 
 $campero-secondary: #007d5e; // Verde 
-$campero-accent:    #fdf5e6; // Arena
 $campero-selected:  #f0f7fd; // Azul cielo
 
 :host {
@@ -123,7 +122,7 @@ $campero-selected:  #f0f7fd; // Azul cielo
 .control-list {
   margin-top: 1.5rem;
   padding: 1.5rem;
-  background: $campero-accent;
+  background: $campero-selected;
   border-left: 5px solid $campero-secondary;
 
   .control-extra {

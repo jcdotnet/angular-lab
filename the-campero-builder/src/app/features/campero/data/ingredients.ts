@@ -9,7 +9,7 @@ export const INGREDIENTS: Ingredient[] = [
     { id: 'chicken', name: 'Pollo a la Plancha', price: 5.50, hasGluten: false, isDefault: false },
     { id: 'tuna', name: 'Atún', price: 5.20, hasGluten: false, isDefault: false },
     { id: 'roasted-chicken', name: 'Pollo Asado', price: 6.00, hasGluten: false, isDefault: false },
-    { id: 'kebab', name: 'Kebab (Shawarma)', price: 5.80, hasGluten: false, isDefault: false },
+    { id: 'kebab', name: 'Kebab', price: 5.80, hasGluten: false, isDefault: false },
     { id: 'tortilla', name: 'Tortilla Francesa', price: 5.00, hasGluten: false, isDefault: false },
     { id: 'serrano', name: 'Jamón Serrano', price: 6.20, hasGluten: false, isDefault: false },
 
