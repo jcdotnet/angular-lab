@@ -1,12 +1,15 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 import { ToastingPickerComponent } from './components/toasting-picker/toasting-picker';
 import { promoCodeValidator } from './validators/promo.validator';
 
 import { INGREDIENTS } from './data/ingredients';
+import { CamperoOrder, ToastingLevel } from './models/campero.model';
+import { CamperoService } from './services/campero.service';
 
 @Component({
   selector: 'app-campero',
@@ -19,6 +22,9 @@ import { INGREDIENTS } from './data/ingredients';
   styleUrl: './campero.scss',
 })
 export default class CamperoComponent {
+
+  private router = inject(Router);
+  private service = inject(CamperoService)
 
   readonly ingredients = INGREDIENTS.filter(i => !i.isDefault && i.price >= 2);
   readonly extraIngredients = INGREDIENTS.filter(i => !i.isDefault && i.price < 2);
@@ -50,21 +56,16 @@ export default class CamperoComponent {
   promoStatus = toSignal(this.promo.statusChanges);
 
   totalPrice = computed(() => {
-    const CAMPERO_BASICO = 3.50;
+    const CAMPERO_BASICO = 3.50; // TO-DO: import this value
 
     const formValues = this.formValue();
-    if (!formValues) return 3.50;
+    if (!formValues) return CAMPERO_BASICO;
 
-    const ingredient = INGREDIENTS.find(i => i.id === formValues.ingredient)?.price || 0;
-    const extras = (formValues.extras || []).reduce((acc, id) => {
-      const extra = INGREDIENTS.find(e => e.id === id);
-      return acc + (extra?.price || 0);
-    }, 0);
-
-    const subtotal = CAMPERO_BASICO + ingredient + extras;
-
-    if (this.promoStatus() === 'VALID' && this.promo.value) return subtotal * 0.8;
-    return subtotal;
+    return this.service.calculatePrice(
+      formValues.ingredient ?? '',
+      formValues.extras || [],
+      this.promoStatus() === 'VALID' && (this.promo.value?.length ?? 0) > 0
+    );
   });
 
   get customer() {
@@ -101,6 +102,26 @@ export default class CamperoComponent {
   }
 
   onSubmit() {
-    console.log(this.camperoForm);
+
+    if (this.customer.invalid || this.ingredient.invalid) {
+      this.camperoForm.markAllAsTouched();
+      return;
+    }
+
+    const camperoFormRawValue = this.camperoForm.getRawValue();
+
+    const camperoOrder: CamperoOrder = {
+      customerName: camperoFormRawValue.customerName ?? '',
+      ingredient: camperoFormRawValue.ingredient ?? '',
+      bread: 'campero-bread',
+      toasting: camperoFormRawValue.toastingLevel as ToastingLevel,
+      extras: camperoFormRawValue.extras,
+      promoCode: camperoFormRawValue.promoCode ?? ''
+    };
+    this.service.setOrder(camperoOrder); 
+
+    console.log('Campero Order: ', camperoOrder);
+
+    this.router.navigate(['/success']);
   }
 }

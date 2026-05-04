@@ -76,7 +76,7 @@
     <div class="control-group promo-section">
       <label for="promoCode" class="control-label">¿Tienes un código de descuento?</label>
       <input class="control-input" [class.is-loading]="promo.pending" type="text" formControlName="promoCode"
-        placeholder="PROMO20">
+        id="promoCode" placeholder="PROMO20">
 
       @if (promo.pending) { <span class="promo-loader">Cargando el descuento...</span> }
       @if (promoIsInvalid) { <div class="control-error">Código inválido</div> }

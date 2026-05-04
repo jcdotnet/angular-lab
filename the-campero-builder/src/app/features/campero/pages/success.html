@@ -1,0 +1,34 @@
+<div class="order-wrapper">
+    <div class="order-card">
+
+        <h1>TU PEDIDO</h1>
+        <p class="order-date">Fecha: {{ currentDate }}</p>
+
+        <div class="order-group">
+            <div class="order-row"><strong>Pedido realizado a nombre de:</strong> {{ order()?.customerName }}</div>
+            <div class="order-row"><strong>Pan:</strong> {{ breadName }}</div>
+            <div class="order-row"><strong>Tostado:</strong> {{ toastingLevel }}</div>
+        </div>
+        <hr class="order-divider">
+
+        <div class="order-group">
+            @if (extras && extras.length > 0) {
+            <ul class="extras-list">
+                @for (extraName of extras; track $index) {
+                <li>+ {{ extraName }}</li>
+                }
+            </ul>
+            } @else {
+            <p class="no-extras">Sin extras adicionales</p>
+            }
+        </div>
+    </div>
+
+    <div class="order-footer">
+        <div class="order-price-wrapper">
+            <span>Total Pagado: </span>
+            <strong class="order-price">{{ totalPrice | currency:'EUR' }}</strong>
+        </div>
+        <button (click)="onNewOrder()" class="btn-submit">NUEVO PEDIDO</button>
+    </div>
+</div>

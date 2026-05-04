@@ -13,6 +13,7 @@ export interface Ingredient {
 export interface CamperoOrder { // DTO
   customerName: string;
   bread: BreadType;
+  ingredient: string,
   toasting: ToastingLevel;
   extras: string[]; 
   promoCode: string;
