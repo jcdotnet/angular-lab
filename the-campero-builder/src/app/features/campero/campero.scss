@@ -1,11 +1,12 @@
 $campero-primary:   #7a306c; // Morado 
 $campero-secondary: #007d5e; // Verde 
 $campero-selected:  #f0f7fd; // Azul cielo
+$campero-mcf:       #a5d8f3; // MCF
 
 :host {
   display: block;      
   min-height: 100vh; 
-  background-color:  #a5d8f3; // mcf
+  background-color: $campero-mcf;
   padding: 2rem 0;     
 }
 
@@ -44,6 +45,13 @@ $campero-selected:  #f0f7fd; // Azul cielo
     border: 1px solid #d1d5db;
     border-radius: 8px;
     font-size: 1rem;
+
+    &.is-loading {
+      border-color: $campero-mcf;
+      background-image: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
     
     &:focus {
       outline: none;
@@ -167,4 +175,9 @@ $campero-selected:  #f0f7fd; // Azul cielo
     background: #d1d5db;
     cursor: not-allowed;
   }
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

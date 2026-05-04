@@ -5,10 +5,10 @@
 
     <div class="control-group">
       <label for="customerName" class="control-label">Nombre: </label>
-      <input id="customerName" class="control-input" type="text" formControlName="customerName" 
+      <input id="customerName" class="control-input" type="text" formControlName="customerName"
         placeholder="Introduce tu nombre...">
-      
-        @if (customerIsInvalid) {
+
+      @if (customerIsInvalid) {
       <small class="control-error">El nombre es obligatorio y debe contener más de 3 caracteres</small>
       }
     </div>
@@ -73,14 +73,25 @@
       <app-toasting-picker formControlName="toastingLevel"></app-toasting-picker>
     </div>
 
+    <div class="control-group promo-section">
+      <label for="promoCode" class="control-label">¿Tienes un código de descuento?</label>
+      <input class="control-input" [class.is-loading]="promo.pending" type="text" formControlName="promoCode"
+        placeholder="PROMO20">
+
+      @if (promo.pending) { <span class="promo-loader">Cargando el descuento...</span> }
+      @if (promoIsInvalid) { <div class="control-error">Código inválido</div> }
+      @if (promoIsValid) { <div class="promo-success">Descuento aplicado con éxito.</div> }
+    </div>
+
     <div class="control-footer">
       <div class="campero-price-wrapper">
         <span>Precio Total:</span>
         <strong class="campero-price">{{ totalPrice() | currency:'EUR' }}</strong>
       </div>
 
-      <button type="submit" class="btn-submit" [disabled]="camperoForm.invalid">
-        ¡Quiero mi campero!
+      <button type="submit" class="btn-submit" 
+        [disabled]="customer.invalid || ingredient.invalid || camperoForm.pending">
+        {{ camperoForm.pending ? 'Validando...' : '¡Quiero mi campero!' }}
       </button>
     </div>
 

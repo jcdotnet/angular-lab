@@ -4,6 +4,8 @@ import { CurrencyPipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { ToastingPickerComponent } from './components/toasting-picker/toasting-picker';
+import { promoCodeValidator } from './validators/promo.validator';
+
 import { INGREDIENTS } from './data/ingredients';
 
 @Component({
@@ -38,25 +40,36 @@ export default class CamperoComponent {
       validators: [Validators.required]
     }),
     extras: new FormArray<FormControl<string>>([]),
-    promoCode: new FormControl('')
+    promoCode: new FormControl('', {
+      asyncValidators: [promoCodeValidator()],
+      updateOn: 'blur' //
+    })
   });
 
-  formValue = toSignal(this.camperoForm.valueChanges, {
-    initialValue: this.camperoForm.getRawValue()
-  });
+  formValue = toSignal(this.camperoForm.valueChanges);
+  promoStatus = toSignal(this.promo.statusChanges);
 
   totalPrice = computed(() => {
     const CAMPERO_BASICO = 3.50;
-    const form = this.formValue();
 
-    const ingredient = INGREDIENTS.find(i => i.id === form.ingredient)?.price || 0;
-    const extras = (form.extras || []).reduce((total, id) => {
+    const formValues = this.formValue();
+    if (!formValues) return 3.50;
+
+    const ingredient = INGREDIENTS.find(i => i.id === formValues.ingredient)?.price || 0;
+    const extras = (formValues.extras || []).reduce((acc, id) => {
       const extra = INGREDIENTS.find(e => e.id === id);
-      return total + (extra?.price || 0);
+      return acc + (extra?.price || 0);
     }, 0);
-    return CAMPERO_BASICO + ingredient + extras;
+
+    const subtotal = CAMPERO_BASICO + ingredient + extras;
+
+    if (this.promoStatus() === 'VALID' && this.promo.value) return subtotal * 0.8;
+    return subtotal;
   });
 
+  get customer() {
+    return this.camperoForm.controls.customerName;
+  }
   get customerIsInvalid() {
     return this.camperoForm.controls.customerName.touched &&
       this.camperoForm.controls.customerName.invalid &&
@@ -64,6 +77,18 @@ export default class CamperoComponent {
   }
   get extras() {
     return this.camperoForm.controls.extras;
+  }
+  get ingredient() {
+    return this.camperoForm.controls.ingredient;
+  }
+  get promo() {
+    return this.camperoForm.controls.promoCode;
+  }
+  get promoIsInvalid() {
+    return this.promo.dirty && this.promo.hasError('promoNotFound');
+  }
+  get promoIsValid() {
+    return this.promo.valid && this.promo.value;
   }
 
   addExtra(id: string): void {
