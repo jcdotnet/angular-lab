@@ -30,7 +30,6 @@ export default class SuccessComponent {
   }
 
   get camperoName() {
-    console.log(INGREDIENTS.find(i => i.id === this.order()?.ingredient));
     return INGREDIENTS.find(i => i.id === this.order()?.ingredient)?.name;
   }
 
@@ -55,7 +54,8 @@ export default class SuccessComponent {
   }
 
   onNewOrder() {
-    this.service.resetOrder();
-    this.router.navigate(['/builder']);
+    this.router.navigate(['/builder']).then(() => {
+      this.service.resetOrder();
+    });
   }
 }
