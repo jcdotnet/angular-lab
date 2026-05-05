@@ -29,6 +29,11 @@ export default class SuccessComponent {
     return 'Pan de Campero'; // TO-DO: add bread field to the form
   }
 
+  get camperoName() {
+    console.log(INGREDIENTS.find(i => i.id === this.order()?.ingredient));
+    return INGREDIENTS.find(i => i.id === this.order()?.ingredient)?.name;
+  }
+
   get extras() {
     return this.order()?.extras.map(id =>
       INGREDIENTS.find(i => i.id === id)?.name
