@@ -2,6 +2,16 @@ import { TestBed } from '@angular/core/testing';
 import SuccessComponent from './success';
 import { CamperoService } from '../services/campero.service';
 import { Router } from '@angular/router';
+import { CamperoOrder } from '../models/campero.model';
+
+const ORDER: CamperoOrder = {
+  customerName: 'John Doe',
+  bread: 'campero-bread',
+  ingredient: 'chicken',
+  toasting: 2,
+  extras: ['cheese'],
+  promoCode: ''
+};
 
 // https://angular.dev/guide/testing/components-basics
 describe('SuccessComponent', () => {
@@ -20,36 +30,43 @@ describe('SuccessComponent', () => {
         }
       ]
     });
-    component = TestBed.inject(SuccessComponent);
     service = TestBed.inject(CamperoService);
     router = TestBed.inject(Router);
   });
 
-  it('should load the order from localStorage', () => {
+  it('should be created', () => {
     // Arrange
-    const order = {
-      customerName: 'Persistence Test',
-      ingredient: 'chicken',
-      extras: []
-    };
-    localStorage.setItem('campero_order', JSON.stringify(order));
+    service.order.set(ORDER);
+    
+    // Act
+    component = TestBed.inject(SuccessComponent);
+    
+    // Assert
+    expect(component).toBeTruthy();
+  });
+
+  it('should navigate back to builder if no order exists', () => {
+    // Arrange
+    service.order.set(null);
 
     // Act
-    TestBed.resetTestingModule();
-    const testService = TestBed.inject(CamperoService);
+    TestBed.inject(SuccessComponent);
 
     // Assert
-    expect(testService.order()).toEqual(order);
+    expect(router.navigate).toHaveBeenCalledWith(['/builder']);
   });
 
   it('should reset order and navigate to the builder', async () => {
     // Arrange
+    service.order.set(ORDER);
+    component = TestBed.inject(SuccessComponent);
     const resetSpy = vi.spyOn(service, 'resetOrder');
 
     // Act
     await component.onNewOrder();
 
     // Assert
+    expect(router.navigate).toHaveBeenCalledWith(['/builder']);
     expect(resetSpy).toHaveBeenCalled();
   });
 });
