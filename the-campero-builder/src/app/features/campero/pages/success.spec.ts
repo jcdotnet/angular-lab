@@ -2,6 +2,19 @@ import { TestBed } from '@angular/core/testing';
 import SuccessComponent from './success';
 import { CamperoService } from '../services/campero.service';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
+import { CamperoOrder } from '../models/campero.model';
+
+const ORDER: CamperoOrder = {
+  customerName: 'John Doe',
+  bread: 'campero-bread',
+  ingredient: 'chicken',
+  toasting: 2,
+  extras: ['cheese'],
+  promoCode: ''
+};
+=======
+>>>>>>> main
 
 // https://angular.dev/guide/testing/components-basics
 describe('SuccessComponent', () => {
@@ -20,11 +33,36 @@ describe('SuccessComponent', () => {
         }
       ]
     });
+<<<<<<< HEAD
+=======
     component = TestBed.inject(SuccessComponent);
+>>>>>>> main
     service = TestBed.inject(CamperoService);
     router = TestBed.inject(Router);
   });
 
+<<<<<<< HEAD
+  it('should be created', () => {
+    // Arrange
+    service.order.set(ORDER);
+    
+    // Act
+    component = TestBed.inject(SuccessComponent);
+    
+    // Assert
+    expect(component).toBeTruthy();
+  });
+
+  it('should navigate back to builder if no order exists', () => {
+    // Arrange
+    service.order.set(null);
+
+    // Act
+    TestBed.inject(SuccessComponent);
+
+    // Assert
+    expect(router.navigate).toHaveBeenCalledWith(['/builder']);
+=======
   it('should load the order from localStorage', () => {
     // Arrange
     const order = {
@@ -40,16 +78,26 @@ describe('SuccessComponent', () => {
 
     // Assert
     expect(testService.order()).toEqual(order);
+>>>>>>> main
   });
 
   it('should reset order and navigate to the builder', async () => {
     // Arrange
+<<<<<<< HEAD
+    service.order.set(ORDER);
+    component = TestBed.inject(SuccessComponent);
+=======
+>>>>>>> main
     const resetSpy = vi.spyOn(service, 'resetOrder');
 
     // Act
     await component.onNewOrder();
 
     // Assert
+<<<<<<< HEAD
+    expect(router.navigate).toHaveBeenCalledWith(['/builder']);
+=======
+>>>>>>> main
     expect(resetSpy).toHaveBeenCalled();
   });
 });
