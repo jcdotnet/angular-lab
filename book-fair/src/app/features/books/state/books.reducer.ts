@@ -12,7 +12,7 @@ const initialState: BooksState = {
     },
     {
       id: '2',
-      title: 'Las siente torres y otros relatos',
+      title: 'Las siete torres y otros relatos',
       author: 'Antonio Mena González',
       year: 2023,
       stock: 10
