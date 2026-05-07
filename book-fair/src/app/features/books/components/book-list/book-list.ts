@@ -3,6 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 
 import { BooksState } from '../../models/book.model';
+import { sellBook } from '../../state/books.actions';
 
 @Component({
   selector: 'app-book-list',
@@ -11,7 +12,11 @@ import { BooksState } from '../../models/book.model';
   styleUrl: './book-list.scss',
 })
 export class BookListComponent {
-   private store = inject(Store);
+  private store = inject(Store);
 
-   books$ = this.store.select((state: {books:BooksState}) => state.books.items);
+  books$ = this.store.select((state: { books: BooksState }) => state.books.items);
+
+  onSell(id: string) {
+    this.store.dispatch(sellBook({ bookId: id }));
+  }
 }

@@ -1,5 +1,6 @@
-import { createReducer } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { BooksState } from '../models/book.model';
+import { sellBook } from './books.actions';
 
 const initialState: BooksState = {
   items: [
@@ -23,5 +24,11 @@ const initialState: BooksState = {
 }
 
 export const booksReducer = createReducer(
-  initialState
+  initialState,
+  on(sellBook, (state, { bookId }) => {
+    return {
+      ...state,
+      items: state.items.map(book => book.id === bookId ? { ...book, stock: book.stock - 1 } : book)
+    }
+  })
 );
