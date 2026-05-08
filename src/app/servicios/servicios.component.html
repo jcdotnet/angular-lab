@@ -1,0 +1,95 @@
+<section id="breadscrumb" class="first-section">
+   <div class="container">    
+        <div class="row breadscrumb-container">
+            <div>
+                <ul class="breadcrumb">
+                    <li><a [routerLink]="['/']">{{ getTexto('home')}}</a></li>
+                    <li class="active">{{getTexto('servicios')}}</li>
+               </ul>
+            </div>
+
+            <div>
+                <h3> {{getTexto('servicios')}} </h3>
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="escritorio-movil">
+   <div class="container">
+       <div class="row row-content">
+            <h1 class="center"> {{getTexto('servicios-desktop-mobile')}}</h1>
+            <p class="parrafo" [innerHTML]="getTexto('desktop-text')"> </p>
+        </div>
+        <div class="row row-content center">
+            <button routerLink="/contact" class="btn btn-success btn-jc">{{ getTexto('servicios-presupuesto')}}</button>
+        </div>
+    </div>
+</section>
+
+
+<section id="web" class="background">
+      <div class="container">
+          <div class="row row-content">
+            <h1 class="center"> {{getTexto('servicios-web')}}</h1>    
+            <p class="parrafo" [innerHTML]="getTexto('web-text')"> </p>                    
+         </div>
+         <div class="row row-content center">
+            <button routerLink="/contact" class="btn btn-success btn-jc">{{ getTexto('servicios-presupuesto')}}</button>
+        </div>
+     </div>
+</section> 
+
+
+<section id="wordpress">
+    <div class="container">
+        <div class="row row-content">
+            <h1 class="center"> {{getTexto('servicios-wordpress')}}</h1>
+            <p class="parrafo" [innerHTML]="getTexto('wordpress-message-text')"> </p>
+            <p class="parrafo" [innerHTML]="getTexto('wordpress-text')"> </p>
+        </div>
+        <div class="row row-content center">
+            <a href="http://josecarlosroman.com/wordpress" class="btn btn-success btn-jc" style="color:#FFF;">{{ getTexto('learn-more')}}</a>
+        </div>
+        <div class="row row-content center">
+            <button routerLink="/contact" class="btn btn-success btn-jc">{{ getTexto('servicios-presupuesto')}}</button>
+        </div>
+    </div>
+</section> 
+
+
+<section id="programming" class="background">
+   <div class="container">
+       <div class="row row-content">
+            <h1 class="center"> {{getTexto('servicios-programming')}}</h1>
+            <p class="parrafo" [innerHTML]="getTexto('programming-text')"> </p>
+        </div>
+        <div class="row row-content center">
+            <button routerLink="/contact" class="btn btn-success btn-jc">{{ getTexto('contactme')}}</button>
+        </div>
+    </div>
+</section> 
+ 
+<!-- TO DO, slider con logos hmtl, wp, angular, etc
+<section id="servicios-logos">
+    
+</section>
+-->
+ 
+<section id="testimonials">
+   <br><br><br>
+   <div class="container">    
+        <div class="row row-content">
+            <div class="well">
+                <blockquote>
+                    <p> Jc es un brillante programador. Es responsable, apasionado de su trabajo, y tiene muy buen criterio a la hora de afrontar el diseño de cualquier proyecto, además de una gran capacidad para aprender nuevas tecnologías en poco tiempo.</p>
+                    <footer>Antonio Márquez Marín,
+                        <cite>Software engineer</cite>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>    

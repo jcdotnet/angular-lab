@@ -1,0 +1,110 @@
+<section class="first-section" id="breadscrumb">
+   <div class="container">    
+        <div class="row breadscrumb-container">
+            <div>
+                <ul class="breadcrumb">
+                    <li><a [routerLink]="['/']">{{ getTexto('home')}}</a></li>
+                    <li class="active">{{getTexto('contact')}}</li>
+               </ul>
+            </div>
+        </div>
+    </div>
+</section>
+ 
+
+ <div class="container row-content">
+  <!--
+  <div>
+        {{ errorMessage }}  
+  </div>
+  -->
+  <div [hidden]="submitted">
+    <h2>{{getTexto('contact-form')}}</h2>
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      
+      <div class="form-group">
+        <label for="nombre">{{getTexto('nombre')}}</label>
+        <input type="text" class="form-control form-control-jc" id="nombre"
+               required
+               [(ngModel)]="contacto.nombre" name="nombre"
+               #nombre="ngModel">
+        <div [hidden]="nombre.valid || nombre.pristine"
+             class="alert alert-danger">
+          El campo nombre es obligatorio
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email" onChange>{{getTexto('email')}}</label>
+        <input type="email" class="form-control form-control-jc" id="email"
+               required
+               [(ngModel)]="contacto.email" name="email"
+               #email="ngModel">
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
+          El campo correo electrónico es obligatorio
+        </div>
+      </div>
+      
+      
+      <div class="form-group">
+        <label for="asunto">{{getTexto('asunto')}}</label>
+        <select class="form-control form-control-jc" id="asunto"
+            required
+            [(ngModel)]="contacto.asunto" name="asunto"
+            #asunto="ngModel">
+            <option *ngFor="let asunto of contactService.getSubjects()" [value]="asunto"> {{ asunto }}</option>
+        </select>
+        <div [hidden]="asunto.valid || asunto.pristine" class="alert alert-danger">
+           El campo asunto es obligatorio
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="mensaje">{{getTexto('mensaje')}} </label>
+        <textarea class="form-control" id="mensaje"
+               rows="10"
+               required
+               [(ngModel)]="contacto.cuerpo" name="cuerpo"
+               #cuerpo="ngModel">
+        </textarea>
+        <div [hidden]="cuerpo.valid || cuerpo.pristine"
+             class="alert alert-danger">
+             El campo mensaje no puede estar vacío
+        </div>
+      </div>
+      
+      <div class="form-group">
+          <input type="checkbox" name="acceptance" [(ngModel)]="acceptance" #cb="ngModel" required>
+          {{ getTexto('policy-acceptance') }}<a routerLink="/privacidad" target="_blank">{{ getTexto('the-privacy-policy') }}</a>
+          <div [hidden]="cb.valid || cb.pristine"
+             class="alert alert-danger">
+              Debe aceptar la política de privacidad
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">{{getTexto('submit')}}</button>
+      <button type="button" class="btn btn-default" (click)="newContact(); contactForm.reset()">{{getTexto('reset')}}</button>
+    </form>
+  </div>
+  
+  <div [hidden]="!submitted">
+    <div class="row">
+        <h3>{{getTexto('sent')}}</h3>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">{{getTexto('nombre')}}</div>
+      <div class="col-xs-9  pull-left">{{ contacto.nombre }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">{{getTexto('email')}}</div>
+      <div class="col-xs-9 pull-left">{{ contacto.email }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">{{getTexto('asunto')}}</div>
+      <div class="col-xs-9 pull-left">{{ contacto.asunto }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="newContact(); contactForm.reset(); submitted=false; acceptance=false">{{getTexto('back')}}</button>
+  </div>
+</div>

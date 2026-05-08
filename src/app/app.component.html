@@ -1,3 +1,93 @@
-<h1>
-  {{title}}
-</h1>
+<header>
+   <!-- navbar -->    
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div id="top-bar-container" class="container-fluid">
+            <div id="top-bar" class="collapse navbar-collapse">
+               
+                <div class="row">
+                    <span id="top-bar-name"><i class="fa fa-id-card-o" aria-hidden="true"></i> Jose Carlos Román Rubio </span>                            
+                    <span id="top-bar-email"><i class="fa fa-envelope-o" aria-hidden="true"></i> info@josecarlosroman.com </span>
+                                       
+                    <div class="pull-right">
+                        <a type="button" (click)="changeLanguage('en_GB')" class="btn btn-xs btn-flag"><img src="assets/en_UK.png" width="25"> </a>
+                        <a type="button" (click)="changeLanguage('es_ES')" class="btn btn-xs btn-flag"><img  src="assets/es_ES.png" width="25"></a> 
+                    </div>    
+                      
+                </div>     
+             
+             </div>
+             
+        </div>
+        
+        <div id="navbar-container" class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <div id="navbar-hamburger">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </div>
+                    <div id="navbar-close" class="hidden">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </div>
+                </button>
+                <div id="flags" class="pull-right">
+                    <a (click)="changeLanguage('en_GB')">EN</a>
+                    <a (click)="changeLanguage('es_ES')">ES</a>
+                </div>              
+                <a class="navbar-brand" [routerLink]="['/']"><img src="assets/jc_letters.png"></a>
+            </div>
+            
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/" > {{getTexto('home')}} </a></li>
+                    <li routerLinkActive="active" class="dropdown">
+                        <a routerLink="/services" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{getTexto('servicios')}}</a>
+                        <ul class="dropdown-menu">
+                            <li><a routerLink="/services"> {{getTexto('servicios-all')}}</a></li> 
+                            <li><a href="http://josecarlosroman.com/wordpress" target="_blank">WordPress</a></li>
+                        </ul>
+                    </li>
+                    <li routerLinkActive="active"><a routerLink="/projects"> {{ getTexto('projects') }}</a></li> 
+                    <li routerLinkActive="active"><a routerLink="/contact"> {{ getTexto('contact') }}</a></li>                    
+                </ul>
+            </div>
+        </div>
+    </nav>         
+</header>
+
+<!-- router output -->
+<router-outlet></router-outlet>
+
+<!-- footer -->
+<footer id="footer" class="row-footer">
+    <div class="container">
+        <div class="row row-content center">             
+            <ul class="list-inline">
+                <li><a [routerLink]="['/']">{{ getTexto('home') }}</a></li>
+                <li><a [routerLink]="['/services']">{{ getTexto('servicios') }}</a></li>
+                <li><a [routerLink]="['/projects']">{{ getTexto('projects') }}</a></li>
+                <li><a [routerLink]="['/contact']">{{ getTexto('contact') }}</a></li>
+            </ul>
+        </div>
+                                     
+        <div class="row row-content center">    
+            <div class="list-inline">
+                <a class="btn btn-social-icon btn-google-plus" href="https://plus.google.com/u/0/109018212858892270524" target="_blank"><i class="fa fa-google-plus"></i></a>
+                <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/romanrubio" target="_blank"><i class="fa fa-linkedin"></i></a>
+                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/jc_roman_rubio" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a class="btn btn-social-icon btn-youtube" href="https://www.youtube.com/channel/UC9wKRs6Mgf2wR2qfjYM0-uQ" target="_blank"><i class="fa fa-youtube"></i></a>
+            </div>
+        </div>
+            
+        <div class="row">
+            <p style="text-align:center">2016-{{ date.getFullYear() }} Jose Carlos Román Rubio</p>
+        </div>
+        
+    </div>
+</footer>
+
+
+<!-- cookie consent -->
+<cookie-consent></cookie-consent>

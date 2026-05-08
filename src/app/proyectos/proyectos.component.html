@@ -1,0 +1,40 @@
+<section id="breadscrumb" class="first-section">
+   <div class="container">    
+        <div class="row breadscrumb-container">
+            <div>
+                <ul class="breadcrumb">
+                    <li><a [routerLink]="['/']">{{ getTexto('home')}}</a></li>
+                    <li class="active">{{getTexto('projects')}}</li>
+               </ul>
+            </div>
+
+            <div>
+                <h3> {{getTexto('projects')}} </h3>
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>  
+   <div class="container">         
+        <div class="row row-content">                              
+            <div id="proyecto" class="col-sm-6 col-md-4" *ngFor='let project of projects'>
+                <h3> {{ getLanguage() == 'es_ES' ? project.nombre : project.name }} </h3>
+                <h3> 
+                    <span *ngIf="project.freelance" class="label label-success">freelance</span>                
+                    <span class="badge">{{project.fechaInicio}} .. {{project.fechaFin}}</span>
+                </h3>
+                <dl>
+                    <dt> {{ getTexto('description') }} </dt>
+                    <dd> {{ getLanguage() == 'es_ES' ? project.descripcion : project.description }}</dd>                    
+                    <dt> {{ getTexto('skills') }} </dt>
+                    <dd> {{ project.tecnologias}} </dd>
+                    <dt> {{ getTexto('cliente') }} </dt>
+                    <dd> {{ project.cliente}} </dd>                            
+                </dl>
+            </div>                            
+        </div> 
+    
+    </div>
+</section>
