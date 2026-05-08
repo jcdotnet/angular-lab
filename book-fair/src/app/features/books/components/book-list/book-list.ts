@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 
 import { BooksActions } from '../../state/books.actions';
-import { selectBooks } from '../../state/books.selectors';
+import { selectStandsWithBooks } from '../../state/books.selectors';
 
 @Component({
   selector: 'app-book-list',
@@ -14,7 +14,7 @@ import { selectBooks } from '../../state/books.selectors';
 export class BookListComponent implements OnInit{
   private store = inject(Store);
 
-  books$ = this.store.select(selectBooks);
+  stands$ = this.store.select(selectStandsWithBooks);
 
   ngOnInit(): void {
     this.store.dispatch(BooksActions.enter());

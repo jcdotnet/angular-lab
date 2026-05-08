@@ -10,6 +10,20 @@ export const selectBooks = createSelector(
   (state) => state.items
 );
 
+export const selectStands = createSelector(
+  selectBooksState,
+  (state) => state.stands
+);
+
+export const selectStandsWithBooks = createSelector(
+  selectStands,
+  selectBooks,
+  (stands, books) => stands.map(stand => ({
+    ...stand,
+    books: books.filter(book => book.standId === stand.id)
+  }))
+);
+
 export const selectBooksInStock = createSelector(
   selectBooks,
   (books) => books.filter(book => book.stock > 0)

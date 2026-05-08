@@ -1,11 +1,17 @@
 <p>Listado de libros</p>
+@for (stand of stands$ | async; track stand.id) {
+<h3>{{ stand.name }} ({{ stand.location }})</h3>
+
 <ul>
-  @for (book of books$ | async; track book.id) {
+  @for (book of stand.books; track book.id) {
   <li>
     <strong>{{ book.title }} - Stock: {{ book.stock }}</strong>
     <button (click)="onSell(book.id)" [disabled]="book.stock <= 0">
       {{ book.stock > 0 ? 'Comprar - con firma del autor :)' : 'Agotado' }}
     </button>
   </li>
-  } 
+  } @empty {
+  <li>No hay libros en esta caseta.</li>
+  }
 </ul>
+}

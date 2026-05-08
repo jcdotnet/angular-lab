@@ -20,6 +20,7 @@ const initialState: BooksState = {
     //   stock: 10
     // },
   ],
+  stands: [], 
   loading: false,
   error: null
 }
@@ -31,9 +32,10 @@ export const booksReducer = createReducer(
     loading: true,
     error: null
   })),
-  on(BooksActions.loadBooksSuccess, (state, { books }) => ({
+  on(BooksActions.loadBooksSuccess, (state, { books, stands }) => ({
     ...state,
     items: books,
+    stands,
     loading: false
   })),
   on(BooksActions.sellBook, (state, { bookId }) => ({
