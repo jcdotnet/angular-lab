@@ -1,0 +1,10 @@
+
+<div id="cookie-consent">
+    <div class="container">
+       <div id="cookie-content" class="row">
+            {{ getTexto("cookie-consent") }}
+            <a [routerLink]="['/cookies']" target="_blank">{{ getTexto("learn-more") }}</a> | 
+            <a id="aceptar-cookies" (click)="aceptarCookies($event);"><b> {{ getTexto("cookie-consent-ok") }}</b></a> 
+        </div>
+    </div>
+</div>
