@@ -7,6 +7,7 @@ export const BooksActions = createActionGroup({
     'Enter': emptyProps(), // UI
 
     'Load Books Success': props<{ books: Book[]; stands: Stand[] }>(), // API
+    'Load Books Failure': props<{ error: string }>(), 
     
     'Sell Book': props<{ bookId: string }>(), // business
     'Restock Book': props<{ bookId: string; count: number }>(),

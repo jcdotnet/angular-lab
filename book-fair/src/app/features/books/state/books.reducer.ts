@@ -38,6 +38,11 @@ export const booksReducer = createReducer(
     stands,
     loading: false
   })),
+  on(BooksActions.loadBooksFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false
+  })),
   on(BooksActions.sellBook, (state, { bookId }) => ({
     ...state,
     items: state.items.map(book => book.id === bookId ? { ...book, stock: book.stock - 1 } : book)

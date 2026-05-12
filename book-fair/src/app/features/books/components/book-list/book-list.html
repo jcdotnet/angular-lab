@@ -1,4 +1,10 @@
 <p>Listado de libros</p>
+
+@if (error$ | async; as errorMessage) {
+  <div class="error">
+    {{ errorMessage }}
+  </div>
+}
 @for (stand of stands$ | async; track stand.id) {
 <h3>{{ stand.name }} ({{ stand.location }})</h3>
 

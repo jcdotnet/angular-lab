@@ -47,9 +47,10 @@ export class BooksEffects {
           ]
         })),
         catchError((error) => {
-          // TO-DO: add BooksActions.loadFailure action to handle API errors
-          console.error('Error while loading books', error);
-          return of({ type: '[Books] Failure' });
+          //console.error('', error);
+          return of(BooksActions.loadBooksFailure({ 
+            error: 'Error al cargar los libros' 
+          }));
         })
       )
     )

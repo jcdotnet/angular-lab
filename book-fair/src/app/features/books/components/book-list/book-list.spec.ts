@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { BookListComponent } from './book-list';
-import { selectStandsWithBooks } from '../../state/books.selectors';
+import { selectBooksError, selectStandsWithBooks } from '../../state/books.selectors';
 import { BooksActions } from '../../state/books.actions';
 
 describe(' BookList', () => {
@@ -25,7 +25,8 @@ describe(' BookList', () => {
       providers: [
         provideMockStore({
           selectors: [
-            { selector: selectStandsWithBooks, value: standsWithBooks }
+            { selector: selectStandsWithBooks, value: standsWithBooks },
+            { selector: selectBooksError, value: null }
           ]
         })
       ]
@@ -95,6 +96,21 @@ describe(' BookList', () => {
     // Assert
     expect(button.disabled).toBe(true);
     expect(button.textContent).toContain('Agotado');
+  });
+
+  it('should display the error message when the store has a failure state', () => {
+    // Arrange
+    const errorMessage = 'Error al cargar los libros';
+    store.overrideSelector(selectBooksError, errorMessage);
+    store.refreshState();
+    fixture.detectChanges();
+
+    // Act
+    const errorDiv = fixture.nativeElement.querySelector('.error');
+
+    // Assert
+    expect(errorDiv).not.toBeNull();
+    expect(errorDiv?.textContent).toContain(errorMessage);
   });
 
 });

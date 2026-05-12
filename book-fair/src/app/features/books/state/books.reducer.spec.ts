@@ -45,6 +45,19 @@ describe('Books Reducer', () => {
     expect(state.items[0].title).toBe('La estación del perro');
   });
 
+  it('should set error message and stop loading on loadBooksFailure', () => {
+    // Arrange
+    const error = 'Failed to load books';
+    const action = BooksActions.loadBooksFailure({ error });
+
+    // Act
+    const state = booksReducer({ ...initialState, loading: true }, action);
+
+    // Assert
+    expect(state.error).toBe(error);   
+    expect(state.loading).toBe(false);
+  });
+
   it('should decrement stock after selling a book', () => {
     // Arrange
     const prevState: BooksState = { ...initialState, items: [book] };

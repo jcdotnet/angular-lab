@@ -28,3 +28,8 @@ export const selectBooksInStock = createSelector(
   selectBooks,
   (books) => books.filter(book => book.stock > 0)
 );
+
+export const selectBooksError = createSelector(
+  selectBooksState,
+  (state) => state.error
+);
